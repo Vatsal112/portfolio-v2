@@ -3,27 +3,38 @@ import { ArrowUpRight, Github } from "lucide-react";
 
 const projects = [
   {
-    name: "Northwind Analytics",
-    desc: "Multi-tenant SaaS dashboard with real-time charts, cohort analysis, and a self-serve billing portal.",
-    tags: ["Next.js", "PostgreSQL", "Stripe", "Redis"],
-    live: "#",
-    repo: "#",
+    name: "Receitpflow - Automated Receipt Management",
+    desc: "Just instant receipt data extraction, built by an Accountant who lived the problem.",
+    tags: ["Nest.js", "PostgreSQL", "GoCardless", "Redis", "Supabase"],
+    live: "https://app.receiptflow.co",
     accent: "from-indigo-500/30 to-fuchsia-500/20",
   },
   {
-    name: "Orbit Commerce",
-    desc: "Headless e-commerce platform with subscription products, abandoned cart recovery, and 40+ payment regions.",
-    tags: ["React", "NestJS", "Supabase", "AWS"],
-    live: "#",
-    repo: "#",
+    name: "Axone Health",
+    desc: "Voice-first AI that transforms clinical documentation. You talk. Axone writes.",
+    tags: ["Next.js", "Prisma", "TailwindCSS", "OpenAI"],
+    live: "https://axonehealth.com/",
     accent: "from-cyan-500/30 to-emerald-500/20",
   },
   {
-    name: "Pulse REST API",
-    desc: "OpenAPI-first event ingestion service handling 1.2M req/day with idempotent writes and SOC2-ready audit logs.",
-    tags: ["Node.js", "TypeScript", "Docker", "PostgreSQL"],
-    live: "#",
-    repo: "#",
+    name: "Maruti Techlabs",
+    desc: "Maruti Techlabs, an award-winning custom software development company, specializes in leveraging Gen-Next technology to unlock boundless opportunities for your business.",
+    tags: ["Next.js", "StrapiCMS"],
+    live: "https://www.marutitech.com",
+    accent: "from-amber-500/30 to-rose-500/20",
+  },
+  {
+    name: "Prime Furniture Inc",
+    desc: "wholesale furniture and home décor for dealers. Shop collections, manage orders, and connect with our team in High Point, NC.",
+    tags: ["Nest.js", "Nuxt.js", "MySQL", "Stripe", "AWS"],
+    live: "https://www.primefurnitureinc.com/",
+    accent: "from-amber-500/30 to-rose-500/20",
+  },
+  {
+    name: "Peddle: Sell your car the easy way",
+    desc: "Sell your old, busted, or junk car with no hoops, haggles, or headaches.",
+    tags: ["Next.js", "SanityCMS", "GSAP", "TailwindCSS"],
+    live: "https://www.peddle.com/about-us",
     accent: "from-amber-500/30 to-rose-500/20",
   },
 ];
@@ -34,9 +45,11 @@ export function Projects() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Selected Work</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              Selected Work
+            </p>
             <h2 className="mt-3 text-3xl md:text-5xl font-semibold tracking-tight">
-              Recent things I've <span className="text-gradient">built</span>.
+              Recent projects I've <span className="text-gradient">worked on</span>.
             </h2>
           </div>
         </div>
@@ -52,7 +65,9 @@ export function Projects() {
               whileHover={{ y: -6 }}
               className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-card transition-all hover:border-brand/40 hover:shadow-glow"
             >
-              <div className={`pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full bg-gradient-to-br ${p.accent} blur-3xl opacity-60 transition-opacity group-hover:opacity-100`} />
+              <div
+                className={`pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full bg-gradient-to-br ${p.accent} blur-3xl opacity-60 transition-opacity group-hover:opacity-100`}
+              />
 
               <div className="relative">
                 <div className="flex items-start justify-between">
@@ -63,18 +78,21 @@ export function Projects() {
 
                 <div className="mt-5 flex flex-wrap gap-1.5">
                   {p.tags.map((t) => (
-                    <span key={t} className="rounded-full border border-border bg-background/40 px-2.5 py-0.5 text-[11px] text-muted-foreground">
+                    <span
+                      key={t}
+                      className="rounded-full border border-border bg-background/40 px-2.5 py-0.5 text-[11px] text-muted-foreground"
+                    >
                       {t}
                     </span>
                   ))}
                 </div>
 
                 <div className="mt-6 flex items-center gap-4 text-xs">
-                  <a href={p.live} className="inline-flex items-center gap-1 font-medium text-foreground hover:text-brand">
+                  <a
+                    href={p.live}
+                    className="inline-flex items-center gap-1 font-medium text-foreground hover:text-brand"
+                  >
                     Live <ArrowUpRight className="h-3 w-3" />
-                  </a>
-                  <a href={p.repo} className="inline-flex items-center gap-1 font-medium text-muted-foreground hover:text-foreground">
-                    <Github className="h-3 w-3" /> Code
                   </a>
                 </div>
               </div>

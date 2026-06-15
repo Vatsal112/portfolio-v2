@@ -1,6 +1,15 @@
 import { motion } from "framer-motion";
 import {
-  Atom, Server, Cloud, Database, Layers, Container, Box, Cpu, Boxes, Triangle,
+  Atom,
+  Server,
+  Cloud,
+  Database,
+  Layers,
+  Container,
+  Box,
+  Cpu,
+  Boxes,
+  Triangle,
 } from "lucide-react";
 
 const groups = [
@@ -25,7 +34,9 @@ const groups = [
   {
     title: "DevOps & Tools",
     items: [
-      { name: "AWS", icon: Cloud },
+      { name: "Railway", icon: Cloud },
+      { name: "Vercel", icon: Cloud },
+      { name: "Netlify", icon: Cloud },
       { name: "Docker", icon: Container },
     ],
   },
@@ -65,7 +76,9 @@ export function Skills() {
                     className="group flex flex-col items-center gap-2 rounded-xl border border-border bg-card/40 p-4 transition-colors hover:border-brand/40 hover:bg-card"
                   >
                     <item.icon className="h-6 w-6 text-foreground/80 transition-colors group-hover:text-brand" />
-                    <span className="text-xs text-muted-foreground group-hover:text-foreground">{item.name}</span>
+                    <span className="text-xs text-muted-foreground group-hover:text-foreground">
+                      {item.name}
+                    </span>
                   </motion.div>
                 ))}
               </div>

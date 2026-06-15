@@ -13,10 +13,18 @@ import { Contact } from "@/components/portfolio/Contact";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Alex Mercer — Full-Stack Developer" },
-      { name: "description", content: "Full-stack developer building reliable SaaS products with React, Node.js, and modern cloud infrastructure." },
-      { property: "og:title", content: "Alex Mercer — Full-Stack Developer" },
-      { property: "og:description", content: "Full-stack developer building reliable SaaS products with React, Node.js, and modern cloud infrastructure." },
+      { title: "Vatsal Dendpara — Full-Stack Developer" },
+      {
+        name: "description",
+        content:
+          "Full-stack developer building reliable SaaS products with React, Node.js, and modern cloud infrastructure.",
+      },
+      { property: "og:title", content: "Vatsal Dendpara — Full-Stack Developer" },
+      {
+        property: "og:description",
+        content:
+          "Full-stack developer building reliable SaaS products with React, Node.js, and modern cloud infrastructure.",
+      },
     ],
   }),
   component: Index,
@@ -32,7 +40,7 @@ function Index() {
       <Projects />
       <Services />
       <Testimonials />
-      <Blog />
+      {/* <Blog /> */}
       <Contact />
       <Toaster theme="dark" position="bottom-right" />
     </main>

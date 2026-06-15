@@ -3,22 +3,32 @@ import { Quote } from "lucide-react";
 
 const items = [
   {
-    quote: "Alex rebuilt our checkout in six weeks and conversion jumped 18%. He treats deadlines like they matter, which is rarer than it should be.",
-    name: "Priya Raman",
-    role: "CTO, Orbit Commerce",
+    quote:
+      "Our deploys were basically a coin flip every Friday. Vatsal fixed the pipeline in his first week — we haven't had a midnight hotfix since. I don't say that lightly.",
+    name: "Surya Sahu",
+    role: "Founder and CEO",
+    initials: "SS",
+  },
+  {
+    quote:
+      "GoCardless billing had eaten two months of runway and we were still nervous pushing to prod. He got webhooks and failed-payment handling sorted in about ten days. PRs were small enough that I could actually review them.",
+    name: "Tanvir Alam",
+    role: "Founder and CEO",
+    initials: "TA",
+  },
+  {
+    quote:
+      "I expected code and a handoff. Instead we got a typed API, docs that weren't embarrassing, and someone who didn't get annoyed when juniors asked questions in standup. Our codebase is in better shape than when he joined.",
+    name: "Prit R",
+    role: "Technical Lead",
     initials: "PR",
   },
   {
-    quote: "One of the few engineers I trust to design an API I'll still like in two years. Clear thinking, no drama, ships on time.",
-    name: "Marcus Liang",
-    role: "Founder, Pulse",
-    initials: "ML",
-  },
-  {
-    quote: "We brought Alex in for two months and he stayed for two years. He upgraded our whole engineering bar, not just the code.",
-    name: "Sofia Becker",
-    role: "VP Engineering, Northwind",
-    initials: "SB",
+    quote:
+      "The AI review workflow he built saves us maybe an hour a day. Nothing flashy — just sensible error handling for when the model gets things wrong. That's the part most people skip.",
+    name: "Sharwon",
+    role: "Co-founder, early-stage SaaS",
+    initials: "S",
   },
 ];
 
@@ -34,7 +44,7 @@ export function Testimonials() {
         </div>
 
         <div className="-mx-6 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="flex snap-x snap-mandatory gap-5 md:grid md:grid-cols-3 md:gap-6">
+          <div className="flex snap-x snap-mandatory gap-5 md:grid md:grid-cols-2 md:gap-6">
             {items.map((t, i) => (
               <motion.figure
                 key={t.name}
@@ -45,7 +55,9 @@ export function Testimonials() {
                 className="glass-card relative w-[85%] shrink-0 snap-start rounded-2xl p-6 md:w-auto"
               >
                 <Quote className="h-5 w-5 text-brand" />
-                <blockquote className="mt-4 text-sm leading-relaxed text-foreground/90">"{t.quote}"</blockquote>
+                <blockquote className="mt-4 text-sm leading-relaxed text-foreground/90">
+                  "{t.quote}"
+                </blockquote>
                 <figcaption className="mt-6 flex items-center gap-3">
                   <span className="grid h-10 w-10 place-items-center rounded-full bg-brand-gradient text-xs font-semibold text-brand-foreground">
                     {t.initials}

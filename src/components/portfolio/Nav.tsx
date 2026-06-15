@@ -8,7 +8,7 @@ const sections = [
   { id: "projects", label: "Work" },
   { id: "services", label: "Services" },
   { id: "testimonials", label: "Words" },
-  { id: "blog", label: "Writing" },
+  // { id: "blog", label: "Writing" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -45,11 +45,14 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <button onClick={() => go("hero")} className="flex items-center gap-2 font-semibold tracking-tight">
+        <button
+          onClick={() => go("hero")}
+          className="flex items-center gap-2 font-semibold tracking-tight"
+        >
           <span className="grid h-8 w-8 place-items-center rounded-md bg-brand-gradient text-brand-foreground">
             <Code2 className="h-4 w-4" />
           </span>
-          <span>Alex Mercer</span>
+          <span>Vatsal Dendpara</span>
         </button>
 
         <nav className="hidden items-center gap-1 md:flex">

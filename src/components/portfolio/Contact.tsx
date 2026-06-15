@@ -6,14 +6,48 @@ import { toast } from "sonner";
 export function Contact() {
   const [sending, setSending] = useState(false);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey) {
+      toast.error("Contact form is not configured yet.");
+      return;
+    }
+
+    const formData = new FormData(form);
     setSending(true);
-    setTimeout(() => {
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.get("name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+          subject: `Portfolio inquiry from ${formData.get("name")}`,
+        }),
+      });
+
+      const data = (await response.json()) as { success: boolean; message?: string };
+
+      if (data.success) {
+        form.reset();
+        toast.success("Message sent — I'll reply within a day.");
+      } else {
+        toast.error(data.message ?? "Something went wrong. Please try again.");
+      }
+    } catch {
+      toast.error("Couldn't send your message. Please try again later.");
+    } finally {
       setSending(false);
-      (e.target as HTMLFormElement).reset();
-      toast.success("Message sent — I'll reply within a day.");
-    }, 800);
+    }
   };
 
   return (
@@ -37,9 +71,27 @@ export function Contact() {
             </p>
 
             <form onSubmit={onSubmit} className="mt-10 grid gap-4 md:grid-cols-2">
-              <input required name="name" placeholder="Your name" className="md:col-span-1 rounded-xl border border-border bg-background/60 px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-brand" />
-              <input required type="email" name="email" placeholder="Email" className="md:col-span-1 rounded-xl border border-border bg-background/60 px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-brand" />
-              <textarea required name="message" rows={5} placeholder="Tell me about your project…" className="md:col-span-2 resize-none rounded-xl border border-border bg-background/60 px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-brand" />
+              <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+              <input
+                required
+                name="name"
+                placeholder="Your name"
+                className="md:col-span-1 rounded-xl border border-border bg-background/60 px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-brand"
+              />
+              <input
+                required
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="md:col-span-1 rounded-xl border border-border bg-background/60 px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-brand"
+              />
+              <textarea
+                required
+                name="message"
+                rows={5}
+                placeholder="Tell me about your project…"
+                className="md:col-span-2 resize-none rounded-xl border border-border bg-background/60 px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-brand"
+              />
               <div className="md:col-span-2 flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
                   {[
@@ -47,12 +99,20 @@ export function Contact() {
                     { icon: Linkedin, href: "#", label: "LinkedIn" },
                     { icon: Twitter, href: "#", label: "Twitter" },
                   ].map((s) => (
-                    <a key={s.label} aria-label={s.label} href={s.href} className="grid h-10 w-10 place-items-center rounded-full border border-border bg-background/60 text-muted-foreground transition-colors hover:border-brand/50 hover:text-foreground">
+                    <a
+                      key={s.label}
+                      aria-label={s.label}
+                      href={s.href}
+                      className="grid h-10 w-10 place-items-center rounded-full border border-border bg-background/60 text-muted-foreground transition-colors hover:border-brand/50 hover:text-foreground"
+                    >
                       <s.icon className="h-4 w-4" />
                     </a>
                   ))}
                 </div>
-                <button disabled={sending} className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-transform hover:scale-[1.03] disabled:opacity-60">
+                <button
+                  disabled={sending}
+                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-transform hover:scale-[1.03] disabled:opacity-60"
+                >
                   {sending ? "Sending…" : "Send message"}
                   <Send className="h-4 w-4" />
                 </button>
@@ -62,7 +122,7 @@ export function Contact() {
         </motion.div>
 
         <footer className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-border pt-8 text-xs text-muted-foreground md:flex-row">
-          <p>© 2026 Alex Mercer. Built with care.</p>
+          <p>© 2026 Vatsal Dendpara. Built with care.</p>
           <p>Made with React, TypeScript & a lot of coffee.</p>
         </footer>
       </div>

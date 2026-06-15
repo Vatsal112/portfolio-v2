@@ -25,8 +25,8 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
 
 const stats = [
   { label: "Years of experience", value: 4, suffix: "+" },
-  { label: "Projects delivered", value: 38, suffix: "" },
-  { label: "Clients served", value: 22, suffix: "" },
+  { label: "Projects delivered", value: 10, suffix: "" },
+  { label: "Clients served", value: 5, suffix: "+" },
   { label: "Production uptime", value: 99, suffix: "%" },
 ];
 
@@ -47,7 +47,13 @@ export function About() {
               Engineering software that <span className="text-gradient">earns trust</span>.
             </h2>
             <p className="mt-6 text-base md:text-lg leading-relaxed text-muted-foreground">
-              I'm a full-stack developer with 4+ years of experience building SaaS products and internal tools for early-stage startups. I care about typed contracts, observable systems, and interfaces that feel obvious. I've shipped everything from billing flows to multi-tenant analytics platforms — most recently leading the rebuild of a healthcare scheduling product used by 12k clinicians weekly.
+              I'm a Full-Stack Developer with 4+ years helping startups build AI-powered SaaS
+              applications using Javascript frameworks. I work across the full stack — from
+              responsive frontends with React.js and Next.js to reliable backends with Node.js &
+              NestJS. I design RESTful APIs, handle database architecture, and integrate third-party
+              services. I take end-to-end ownership of every project, delivering clean, maintainable
+              code that scales. Whether building from scratch or improving an existing app, I'm here
+              to help.
             </p>
           </div>
 

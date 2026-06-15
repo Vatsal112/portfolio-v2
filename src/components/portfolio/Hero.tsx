@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const titles = ["Full-Stack Developer", "SaaS Architect", "Product Engineer"];
+const titles = ["Full-Stack Developer", "AI Workflow Expert", "SaaS Engineer", "Software Engineer"];
 
 function useTyping() {
   const [i, setI] = useState(0);
@@ -51,7 +51,7 @@ export function Hero() {
           className="mx-auto inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs text-muted-foreground backdrop-blur"
         >
           <Sparkles className="h-3 w-3 text-brand" />
-          Available for new projects · Q3 2026
+          Available for new projects
         </motion.div>
 
         <motion.h1
@@ -60,7 +60,7 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="mt-6 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05] text-gradient"
         >
-          Alex Mercer
+          Vatsal Dendpara
         </motion.h1>
 
         <motion.div
@@ -79,7 +79,8 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="mx-auto mt-6 max-w-2xl text-base md:text-lg text-muted-foreground"
         >
-          I help startups ship dependable SaaS products — from polished React interfaces to scalable Node.js backends and the cloud they run on.
+          I help startups ship dependable AI-powered SaaS products — from polished React interfaces
+          to scalable Node.js backends and the cloud they run on.
         </motion.p>
 
         <motion.div
