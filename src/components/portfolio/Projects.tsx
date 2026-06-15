@@ -28,14 +28,14 @@ const projects = [
     desc: "wholesale furniture and home décor for dealers. Shop collections, manage orders, and connect with our team in High Point, NC.",
     tags: ["Nest.js", "Nuxt.js", "MySQL", "Stripe", "AWS"],
     live: "https://www.primefurnitureinc.com/",
-    accent: "from-amber-500/30 to-rose-500/20",
+    accent: "from-orange-500/30 to-stone-400/20",
   },
   {
     name: "Peddle: Sell your car the easy way",
     desc: "Sell your old, busted, or junk car with no hoops, haggles, or headaches.",
     tags: ["Next.js", "SanityCMS", "GSAP", "TailwindCSS"],
     live: "https://www.peddle.com/about-us",
-    accent: "from-amber-500/30 to-rose-500/20",
+    accent: "from-slate-400/30 to-blue-500/20",
   },
 ];
 
