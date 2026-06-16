@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Send } from "lucide-react";
+import { Github, Linkedin, Twitter, Send, Instagram } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 
@@ -133,9 +133,18 @@ export function Contact() {
               <div className="md:col-span-2 flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
                   {[
-                    { icon: Github, href: "#", label: "GitHub" },
-                    { icon: Linkedin, href: "#", label: "LinkedIn" },
-                    { icon: Twitter, href: "#", label: "Twitter" },
+                    { icon: Github, href: "https://github.com/Vatsal112", label: "GitHub" },
+                    {
+                      icon: Linkedin,
+                      href: "https://www.linkedin.com/in/vatsaldendpara/",
+                      label: "LinkedIn",
+                    },
+                    { icon: Twitter, href: "https://x.com/VDendpara", label: "Twitter" },
+                    {
+                      icon: Instagram,
+                      href: "https://www.instagram.com/_v_a_t_s_a_l/",
+                      label: "Instagram",
+                    },
                   ].map((s) => (
                     <a
                       key={s.label}
