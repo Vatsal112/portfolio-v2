@@ -6,18 +6,25 @@ import { Projects } from "@/components/portfolio/Projects";
 import { Services } from "@/components/portfolio/Services";
 import { Skills } from "@/components/portfolio/Skills";
 import { Testimonials } from "@/components/portfolio/Testimonials";
+import { personSchema } from "@/lib/jsonld";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <Nav />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Services />
-      <Testimonials />
-      <Contact />
-    </main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema()) }}
+      />
+      <main className="min-h-screen bg-background text-foreground">
+        <Nav />
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Services />
+        <Testimonials />
+        <Contact />
+      </main>
+    </>
   );
 }
