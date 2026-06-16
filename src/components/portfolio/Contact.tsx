@@ -1,7 +1,11 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, Send } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Contact() {
   const [sending, setSending] = useState(false);
@@ -9,7 +13,7 @@ export function Contact() {
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
     if (!accessKey) {
       toast.error("Contact form is not configured yet.");
@@ -54,24 +58,58 @@ export function Contact() {
     <section id="contact" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-4xl px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease }}
           className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 md:p-14"
         >
           <div className="pointer-events-none absolute inset-0 bg-hero-gradient opacity-60" />
           <div className="relative">
-            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Contact</p>
-            <h2 className="mt-3 text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
+            <motion.p
+              initial={{ opacity: 0, x: -12 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease }}
+              className="text-xs uppercase tracking-[0.2em] text-muted-foreground"
+            >
+              Contact
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.06, ease }}
+              className="mt-3 text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05]"
+            >
               Let's Build <span className="text-gradient">Something Great</span>
-            </h2>
-            <p className="mt-4 max-w-xl text-muted-foreground">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.12, ease }}
+              className="mt-4 max-w-xl text-muted-foreground"
+            >
               Have a product in mind, or just want to chat about architecture? I read every message.
-            </p>
+            </motion.p>
 
-            <form onSubmit={onSubmit} className="mt-10 grid gap-4 md:grid-cols-2">
-              <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+            <motion.form
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, ease }}
+              onSubmit={onSubmit}
+              className="mt-10 grid gap-4 md:grid-cols-2"
+            >
+              <input
+                type="checkbox"
+                name="botcheck"
+                className="hidden"
+                style={{ display: "none" }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
               <input
                 required
                 name="name"
@@ -117,13 +155,13 @@ export function Contact() {
                   <Send className="h-4 w-4" />
                 </button>
               </div>
-            </form>
+            </motion.form>
           </div>
         </motion.div>
 
         <footer className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-border pt-8 text-xs text-muted-foreground md:flex-row">
           <p>© 2026 Vatsal Dendpara. Built with care.</p>
-          <p>Made with React, TypeScript & a lot of coffee.</p>
+          <p>Made with Next.js, TypeScript & a lot of coffee.</p>
         </footer>
       </div>
     </section>

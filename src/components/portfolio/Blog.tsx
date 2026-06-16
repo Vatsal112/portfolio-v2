@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
@@ -28,7 +30,9 @@ export function Blog() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 max-w-2xl">
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Writing</p>
-          <h2 className="mt-3 text-3xl md:text-5xl font-semibold tracking-tight">Notes from the trenches.</h2>
+          <h2 className="mt-3 text-3xl md:text-5xl font-semibold tracking-tight">
+            Notes from the trenches.
+          </h2>
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">

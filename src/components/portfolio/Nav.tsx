@@ -1,6 +1,8 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { Menu, X, Code2 } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 
 const sections = [
   { id: "about", label: "About" },
@@ -8,7 +10,6 @@ const sections = [
   { id: "projects", label: "Work" },
   { id: "services", label: "Services" },
   { id: "testimonials", label: "Words" },
-  // { id: "blog", label: "Writing" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -16,6 +17,13 @@ export function Nav() {
   const [active, setActive] = useState("about");
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   useEffect(() => {
     const onScroll = () => {
@@ -91,6 +99,12 @@ export function Nav() {
           {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
       </div>
+
+      {/* Scroll progress bar */}
+      <motion.div
+        style={{ scaleX }}
+        className="absolute inset-x-0 bottom-0 h-[2px] origin-[0%] bg-brand-gradient"
+      />
 
       <AnimatePresence>
         {open && (

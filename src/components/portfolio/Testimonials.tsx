@@ -1,5 +1,9 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 const items = [
   {
@@ -37,10 +41,24 @@ export function Testimonials() {
     <section id="testimonials" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Kind Words</p>
-          <h2 className="mt-3 text-3xl md:text-5xl font-semibold tracking-tight">
+          <motion.p
+            initial={{ opacity: 0, x: -12 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, ease }}
+            className="text-xs uppercase tracking-[0.2em] text-muted-foreground"
+          >
+            Kind Words
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: 0.05, ease }}
+            className="mt-3 text-3xl md:text-5xl font-semibold tracking-tight"
+          >
             From people I've shipped with.
-          </h2>
+          </motion.h2>
         </div>
 
         <div className="-mx-6 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -48,10 +66,10 @@ export function Testimonials() {
             {items.map((t, i) => (
               <motion.figure
                 key={t.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 32, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease }}
                 className="glass-card relative w-[85%] shrink-0 snap-start rounded-2xl p-6 md:w-auto"
               >
                 <Quote className="h-5 w-5 text-brand" />

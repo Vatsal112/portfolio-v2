@@ -1,8 +1,12 @@
-import { motion } from "framer-motion";
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const titles = ["Full-Stack Developer", "AI Workflow Expert", "SaaS Engineer", "Software Engineer"];
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 function useTyping() {
   const [i, setI] = useState(0);
@@ -38,16 +42,29 @@ function scrollTo(id: string) {
 
 export function Hero() {
   const typed = useTyping();
-  return (
-    <section id="hero" className="relative isolate overflow-hidden pt-32 pb-24 md:pt-44 md:pb-32">
-      <div className="absolute inset-0 -z-10 bg-hero-gradient" />
-      <div className="absolute inset-0 -z-10 grid-bg" />
+  const ref = useRef<HTMLElement>(null);
+  const { scrollY } = useScroll();
 
-      <div className="mx-auto max-w-4xl px-6 text-center">
+  const bgY = useTransform(scrollY, [0, 600], [0, 120]);
+  const gridY = useTransform(scrollY, [0, 600], [0, 60]);
+  const contentY = useTransform(scrollY, [0, 600], [0, -40]);
+
+  return (
+    <section
+      ref={ref}
+      id="hero"
+      className="relative isolate overflow-hidden pt-32 pb-24 md:pt-44 md:pb-32"
+    >
+      {/* Parallax background layers */}
+      <motion.div style={{ y: bgY }} className="absolute inset-0 -z-10 bg-hero-gradient" />
+      <motion.div style={{ y: gridY }} className="absolute inset-0 -z-10 grid-bg" />
+
+      {/* Content parallax (moves up slightly on scroll for depth) */}
+      <motion.div style={{ y: contentY }} className="mx-auto max-w-4xl px-6 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 20, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.6, ease }}
           className="mx-auto inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs text-muted-foreground backdrop-blur"
         >
           <Sparkles className="h-3 w-3 text-brand" />
@@ -55,18 +72,18 @@ export function Hero() {
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
+          transition={{ duration: 0.8, delay: 0.08, ease }}
           className="mt-6 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05] text-gradient"
         >
           Vatsal Dendpara
         </motion.h1>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.16, ease }}
           className="mt-4 text-2xl md:text-3xl font-medium text-foreground/90"
         >
           <span>{typed}</span>
@@ -74,9 +91,9 @@ export function Hero() {
         </motion.div>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.24, ease }}
           className="mx-auto mt-6 max-w-2xl text-base md:text-lg text-muted-foreground"
         >
           I help startups ship dependable AI-powered SaaS products — from polished React interfaces
@@ -86,7 +103,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
+          transition={{ duration: 0.7, delay: 0.32, ease }}
           className="mt-10 flex flex-wrap items-center justify-center gap-3"
         >
           <button
@@ -103,7 +120,7 @@ export function Hero() {
             Let's Talk
           </button>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
